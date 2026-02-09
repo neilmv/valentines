@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 1000px;
+  background-image: url("assets/darlene-7.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Zeyada', cursive;
+}
+
+/* Paper styles */
+.paper {
+  background-image: url("https://i0.wp.com/textures.world/wp-content/uploads/2018/10/2-Millimeter-Paper-Background-copy.jpg?ssl=1");
+  background-size: 500px;
+  background-position: center center;
+  padding: 20px 100px;
+  transform: rotateZ(-5deg);
+  box-shadow: 1px 15px 20px 0px rgba(0,0,0,0.5);
+  position: absolute;
+  cursor: grab;
+  transition: box-shadow 0.3s ease;
+  max-width: 90vw;
+  overflow: visible;
+}
+
+.paper:active {
+  cursor: grabbing;
+}
+
+.paper.heart {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.paper.image {
+  padding: 10px;
+}
+
+.paper.image p {
+  font-size: 30px;
+}
+
+img {
+  max-height: 200px;
+  width: 100%;
+  user-select: none;
+  max-width: 100%;
+  height: auto;
+}
+
+.paper.heart::after {
+  content: "";
+  background-image: url('https://cdn.pixabay.com/photo/2016/03/31/19/25/cartoon-1294994__340.png');
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: 150px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+}
+
+.paper.red {
+  /* filter: hue-rotate(90deg); */
+}
+
+.paper:nth-of-type(3n) {
+  background-position: left top;
+}
+
+.paper:nth-of-type(3n) {
+  /* filter: hue-rotate(200deg); */
+}
+
+p {
+  font-family: 'Zeyada';
+  font-size: 50px;
+  color: rgb(0,0,100);
+  opacity: 0.75;
+  user-select: none;
+  margin: 10px 0;
+}
+
+/* Music Indicator */
+.music-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 12px 20px;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  color: #e91e63;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+  border: 2px solid #ffb6c1;
+  backdrop-filter: blur(5px);
+}
+
+.music-indicator.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.music-indicator i {
+  font-size: 22px;
+  color: #e91e63;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Floating hearts animation */
+.heart-float {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: #ff6b9d;
+  transform: rotate(45deg);
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.heart-float:before,
+.heart-float:after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: inherit;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart-float:before {
+  top: -10px;
+  left: 0;
+}
+
+.heart-float:after {
+  top: 0;
+  left: -10px;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(45deg) scale(0.5);
+  }
+  10% {
+    opacity: 0.8;
+    transform: translateY(-20px) rotate(45deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) rotate(45deg) scale(0.8);
+  }
+}
+
+/* Mobile-specific floating animation */
+@keyframes mobileFloatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(45deg) scale(0.5);
+  }
+  10% {
+    opacity: 0.9;
+    transform: translateY(-10px) rotate(45deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) rotate(45deg) scale(0.7);
+  }
+}
+
+/* Animations for play button */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .paper {
+    padding: 15px 50px;
+    max-width: 50vw;
+  }
+  
+  .paper.image p {
+    font-size: 24px;
+  }
+  
+  p {
+    font-size: 25px;
+  }
+  
+  .paper.heart {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .music-indicator {
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+  
+  /* More hearts on mobile */
+  .heart-float {
+    animation: mobileFloatUp 2.5s ease-in forwards !important;
+  }
+}
+
+/* Prevent text selection and improve touch */
+.paper {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+}
+
+/* Heart container for performance */
+#heart-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
