@@ -143,7 +143,7 @@ class Paper {
 
     this.rotationTimer = setTimeout(() => {
       this.rotating = true;
-    }, 1500);
+    }, 100000);
 
     document.addEventListener(
       'touchmove',
